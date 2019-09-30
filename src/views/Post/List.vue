@@ -45,16 +45,17 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 export default {
   computed: {
-    ...mapState([
-      'loading',
-      'posts'
-    ])
+    ...mapState({
+      posts: state => state.posts.items,
+      loading: state => state.posts.loading
+    })
   },
   mounted() {
-    this.$store.dispatch('fetchPosts')
+    this.$store.dispatch("posts/fetchPosts");
+    console.log(this.$store.state.posts.loading);
   }
-}
+};
 </script>
